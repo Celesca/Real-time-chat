@@ -4,7 +4,7 @@ import { Message } from '../../models/Message'
 import MessageBlock from '../../components/MessageBlock'
 import { io, Socket } from 'socket.io-client';
 
-const SOCKET_SERVER_URL = 'http://localhost:3000';
+const SOCKET_SERVER_URL = 'http://localhost:3001';
 
 const ChatPage: React.FC = () => {
 
@@ -14,6 +14,7 @@ const ChatPage: React.FC = () => {
 
   useEffect(() => {
     const newSocket = io(SOCKET_SERVER_URL);
+    console.log("connected")
     setSocket(newSocket);
 
     // Clean up the socket connection when component unmounts
