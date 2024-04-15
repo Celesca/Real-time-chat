@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import InputField from '../../components/InputField'
 import { Message } from '../../models/Message'
+import MessageBlock from '../../components/MessageBlock'
 
 const ChatPage = () => {
 
@@ -9,8 +10,8 @@ const ChatPage = () => {
   return ( 
     <>
       <div className="mx-64">
-      {messages.map((message, index) => {
-        return <div key={index} className="text-black"></div>
+      {messages.map((message: Message, index:number) => {
+        return <MessageBlock key={index} {...message}></MessageBlock>
       })}
       </div>
       <InputField messages={messages} setMessages={setMessages}/>

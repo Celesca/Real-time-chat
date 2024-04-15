@@ -1,8 +1,13 @@
 import React from 'react'
+import { Message } from '../models/Message'
 
-const MessageBlock = () => {
+const MessageBlock = (message: Message) => {
   return (
-    <div>MessageBlock</div>
+    <>
+        <div>{message.text}</div>
+        <div>{message.user}</div>
+        <div>{message.time}</div>
+    </>
   )
 }
 
