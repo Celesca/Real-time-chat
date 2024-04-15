@@ -1,8 +1,18 @@
 #form {
     position: fixed;
-    bottom:0;
+    bottom: 0;
     background-color: #E53E11;
+    width: 100%;
 }
 
-#form_input {
+#form_input:focus {
+    box-shadow: 0 0 5px 0 #E53E11;
+    outline: solid 1px aquamarine;
+}
+
+  
+.submit_btn:hover {
+    transition: 0.2s;
+    background-color: aquamarine;
+    transform: scale(1.1);
 }

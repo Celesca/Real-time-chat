@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
                 element: <LoginPage/> 
             },
             {
-                path: "chat", 
+                path: "/chat", 
                 element: <ChatPage/> },
         ]
     }
