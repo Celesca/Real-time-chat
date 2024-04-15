@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import './InputField.css'
 import { IoMdSend } from "react-icons/io";
+import { Message } from '../models/Message';
 
 interface Props {
-  messages: string[]
-  setMessages: React.Dispatch<React.SetStateAction<string[]>>
+  messages: Message[]
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>
 }
 
 const InputField = ({messages, setMessages} : Props) => {
@@ -13,7 +14,13 @@ const InputField = ({messages, setMessages} : Props) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text === '') return;
-    setMessages([...messages, text]);
+    const newMessage: Message = {
+      text: text,
+      user: 'user',
+      time: Date.now().toString()
+    } 
+    
+    setMessages([...messages, newMessage]);
     setText('');
   }
 
