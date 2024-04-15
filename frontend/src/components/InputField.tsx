@@ -17,9 +17,9 @@ const InputField = ({messages, setMessages} : Props) => {
     const newMessage: Message = {
       text: text,
       user: 'user',
-      time: Date.now().toString()
+      time: new Date().toLocaleTimeString()
     } 
-    
+
     setMessages([...messages, newMessage]);
     setText('');
   }

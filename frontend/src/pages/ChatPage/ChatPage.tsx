@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import InputField from '../../components/InputField'
 import { Message } from '../../models/Message'
 import MessageBlock from '../../components/MessageBlock'
 
 const ChatPage = () => {
 
-  const [messages, setMessages] = useState<Message[]>([]) 
+  const [messages, setMessages] = useState<Message[]>([]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages])
+
+    // Function to scroll to the bottom of the messages container
+    const scrollToBottom = () => {
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+  
 
   return ( 
     <>
