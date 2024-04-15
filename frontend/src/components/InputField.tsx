@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import './InputField.css'
 import { IoMdSend } from "react-icons/io";
 import { Message } from '../models/Message';
+import { Socket } from 'socket.io-client';
 
 interface Props {
   messages: Message[]
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>
+  socket: Socket | null
 }
 
-const InputField = ({messages, setMessages} : Props) => {
+const InputField = ({messages, setMessages, socket} : Props) => {
   const [text, setText] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,6 +22,9 @@ const InputField = ({messages, setMessages} : Props) => {
       time: new Date().toLocaleTimeString()
     } 
 
+    if (socket) {
+      socket.emit('chat-message', newMessage);
+    }
     setMessages([...messages, newMessage]);
     setText('');
   }

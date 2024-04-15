@@ -2,11 +2,39 @@ import React, { useEffect, useRef, useState } from 'react'
 import InputField from '../../components/InputField'
 import { Message } from '../../models/Message'
 import MessageBlock from '../../components/MessageBlock'
+import { io, Socket } from 'socket.io-client';
 
-const ChatPage = () => {
+const SOCKET_SERVER_URL = 'http://localhost:3000';
+
+const ChatPage: React.FC = () => {
 
   const [messages, setMessages] = useState<Message[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [socket, setSocket] = useState<Socket | null>(null);
+
+  useEffect(() => {
+    const newSocket = io(SOCKET_SERVER_URL);
+    setSocket(newSocket);
+
+    // Clean up the socket connection when component unmounts
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    // Listen for incoming messages
+    socket.on('chat-message', (message: Message) => {
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    // Clean up event listeners when component unmounts
+    return () => {
+      socket.off('message');
+    };
+  }, [socket]);
 
   useEffect(() => {
     scrollToBottom();
@@ -19,7 +47,6 @@ const ChatPage = () => {
       }
     };
   
-
   return ( 
     <>
  <div className="mx-64" style={{ maxHeight: 'calc(100vh - 200px)' }}>
@@ -29,9 +56,7 @@ const ChatPage = () => {
         {/* Ref to scroll to bottom */}
         <div ref={messagesEndRef}></div>
       </div>
-      <InputField messages={messages} setMessages={setMessages} />
-
-
+      <InputField messages={messages} setMessages={setMessages} socket={socket}/>
     </>
   )
 }
