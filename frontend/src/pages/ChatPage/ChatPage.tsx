@@ -3,6 +3,7 @@ import InputField from '../../components/InputField'
 import { Message } from '../../models/Message'
 import MessageBlock from '../../components/MessageBlock'
 import { io, Socket } from 'socket.io-client';
+import './ChatPage.css'
 
 const SOCKET_SERVER_URL = 'http://localhost:3001';
 
@@ -50,14 +51,14 @@ const ChatPage: React.FC = () => {
   
   return ( 
     <>
- <div className="mx-64" style={{ maxHeight: 'calc(100vh - 200px)' }}>
+ <div className="mx-64 chat-container">
         {messages.map((message: Message, index: number) => {
           return <MessageBlock key={index} {...message}></MessageBlock>;
         })}
         {/* Ref to scroll to bottom */}
         <div ref={messagesEndRef}></div>
       </div>
-      <InputField messages={messages} setMessages={setMessages} socket={socket}/>
+      <InputField socket={socket}/>
     </>
   )
 }

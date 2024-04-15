@@ -5,12 +5,10 @@ import { Message } from '../models/Message';
 import { Socket } from 'socket.io-client';
 
 interface Props {
-  messages: Message[]
-  setMessages: React.Dispatch<React.SetStateAction<Message[]>>
   socket: Socket | null
 }
 
-const InputField = ({messages, setMessages, socket} : Props) => {
+const InputField = ({socket} : Props) => {
   const [text, setText] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,7 +23,6 @@ const InputField = ({messages, setMessages, socket} : Props) => {
     if (socket) {
       socket.emit('chat-message', newMessage);
     }
-    setMessages([...messages, newMessage]);
     setText('');
   }
 
@@ -36,9 +33,9 @@ const InputField = ({messages, setMessages, socket} : Props) => {
         placeholder=""
         onChange={(e) => setText(e.target.value)}
         autoComplete='off'
-        className="w-1/2 text-black border-2 rounded-xl outline-none text-lg"
+        className="w-1/2 p-2 text-black border-2 rounded-xl outline-none text-lg mr-2"
         />
-        <button className="bg-white ml-9 p-2 rounded-xl" type="submit">
+        <button className="bg-white ml-9 p-2 rounded-xl submit_btn" type="submit">
           <IoMdSend size={30}/>
           </button>
     </form>
