@@ -25,15 +25,15 @@ const InputField = ({messages, setMessages} : Props) => {
   }
 
   return (
-    <form id="form" className="py-4 w-full flex justify-center" onSubmit={(e)=> handleSubmit(e)}>
+    <form id="form" className="py-2 w-full flex justify-center" onSubmit={(e)=> handleSubmit(e)}>
         <input type="text" id="form_input"
         value={text} 
         placeholder=""
         onChange={(e) => setText(e.target.value)}
         autoComplete='off'
-        className="w-1/2 p-2 text-black border-2 rounded-xl outline-none text-lg"
+        className="w-1/2 text-black border-2 rounded-xl outline-none text-lg"
         />
-        <button className="bg-white ml-9 p-3 rounded-xl" type="submit">
+        <button className="bg-white ml-9 p-2 rounded-xl" type="submit">
           <IoMdSend size={30}/>
           </button>
     </form>

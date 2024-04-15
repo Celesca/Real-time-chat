@@ -22,12 +22,14 @@ const ChatPage = () => {
 
   return ( 
     <>
-      <div className="mx-64">
-      {messages.map((message: Message, index:number) => {
-        return <MessageBlock key={index} {...message}></MessageBlock>
-      })}
+ <div className="mx-64" style={{ maxHeight: 'calc(100vh - 200px)' }}>
+        {messages.map((message: Message, index: number) => {
+          return <MessageBlock key={index} {...message}></MessageBlock>;
+        })}
+        {/* Ref to scroll to bottom */}
+        <div ref={messagesEndRef}></div>
       </div>
-      <InputField messages={messages} setMessages={setMessages}/>
+      <InputField messages={messages} setMessages={setMessages} />
 
 
     </>
