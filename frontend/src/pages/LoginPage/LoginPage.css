@@ -3,3 +3,9 @@
     height: 100vh;
     background-image: linear-gradient(135deg, white, lightgreen, darkblue);
 }
+
+.footer-container {
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+}
