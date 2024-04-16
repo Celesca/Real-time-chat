@@ -2,6 +2,8 @@
 
 RC Chat is the web application that allow people to talk and connect together in real-time.
 
+![Real-time-chat](https://github.com/Celesca/Celesca/blob/main/Project%20Picture/real-time-chat.PNG)
+
 ## Installation via Docker
 
 `git clone https://github.com/Celesca/Real-time-chat.git`
