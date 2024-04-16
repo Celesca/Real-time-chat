@@ -5,7 +5,7 @@ import MessageBlock from '../../components/MessageBlock'
 import { io, Socket } from 'socket.io-client';
 import './ChatPage.css'
 
-const SOCKET_SERVER_URL = 'http://localhost:3001';
+const SOCKET_SERVER_URL = 'http://localhost:3000';
 
 const ChatPage: React.FC = () => {
 
@@ -18,23 +18,22 @@ const ChatPage: React.FC = () => {
     console.log("connected")
     setSocket(newSocket);
 
-    // Clean up the socket connection when component unmounts
     return () => {
       newSocket.disconnect();
     };
   }, []);
 
+  // useEffect for listening to chat-message event
+
   useEffect(() => {
     if (!socket) return;
 
-    // Listen for incoming messages
     socket.on('chat-message', (message: Message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 
-    // Clean up event listeners when component unmounts
     return () => {
-      socket.off('message');
+      socket.off('chat-message');
     };
   }, [socket]);
 

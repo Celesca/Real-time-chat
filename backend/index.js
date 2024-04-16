@@ -4,7 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 
-const port = process.env.SERVER_PORT || 3001;
+const port = process.env.SERVER_PORT || 3000;
 const app = express();
 const server = http.createServer(app);
 
@@ -21,9 +21,8 @@ dotenv.config();
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    //Handle incoming messages from client
+
     socket.on('chat-message', (msg) => {
-        console.log('message: ' + msg);
         io.emit('chat-message', msg);
     })
 
