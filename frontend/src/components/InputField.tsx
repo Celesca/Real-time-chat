@@ -16,7 +16,7 @@ const InputField = ({socket} : Props) => {
     if (text === '') return;
     const newMessage: Message = {
       text: text,
-      user: 'user',
+      user: sessionStorage.getItem('username') || 'Unknown Cat',
       time: new Date().toLocaleTimeString()
     } 
 

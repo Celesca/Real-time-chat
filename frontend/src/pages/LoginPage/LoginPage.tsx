@@ -1,4 +1,3 @@
-import React from 'react'
 import './LoginPage.css'
 import Login from '../../components/Login'
 

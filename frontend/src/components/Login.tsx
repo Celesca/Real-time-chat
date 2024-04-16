@@ -12,6 +12,7 @@ const Login = () => {
     e.preventDefault();
     if (username.trim() === '') {
         alert("Your name cannot be blank")
+        return 
     }
 
     sessionStorage.setItem('username', username)
