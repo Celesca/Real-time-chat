@@ -1,0 +1,5 @@
+.body-container {
+
+    height: 100vh;
+    background-image: linear-gradient(135deg, white, lightgreen, darkblue);
+}
