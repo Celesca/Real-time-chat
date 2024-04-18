@@ -50,7 +50,7 @@ const ChatPage: React.FC = () => {
   
   return ( 
     <>
- <div className="mx-64 chat-container">
+      <div className="mx-64 chat-container">
         {messages.map((message: Message, index: number) => {
           return <MessageBlock key={index} {...message}></MessageBlock>;
         })}
